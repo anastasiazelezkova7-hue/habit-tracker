@@ -1,0 +1,58 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum FrequencyType {
+  DAILY
+  WEEKLY
+  CUSTOM_DAYS
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  name      String
+  icon      String
+  color     String
+  isDefault Boolean  @default(false)
+  habits    Habit[]
+  createdAt DateTime @default(now())
+
+  @@map("categories")
+}
+
+model Habit {
+  id                  String        @id @default(cuid())
+  categoryId          String
+  name                String
+  icon                String
+  color               String
+  frequencyType       FrequencyType @default(DAILY)
+  customDays          Json?
+  targetValue         Int           @default(1)
+  unit                String        @default("")
+  reminderTime        String?
+  monthlyMissesAllowed Int          @default(0)
+  isArchived          Boolean       @default(false)
+  createdAt           DateTime      @default(now())
+  category            Category      @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  logs                HabitLog[]
+
+  @@map("habits")
+}
+
+model HabitLog {
+  id          String   @id @default(cuid())
+  habitId     String
+  date        DateTime
+  value       Int      @default(1)
+  isCompleted Boolean  @default(true)
+  habit       Habit    @relation(fields: [habitId], references: [id], onDelete: Cascade)
+
+  @@unique([habitId, date])
+  @@map("habit_logs")
+}

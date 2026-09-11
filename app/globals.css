@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&display=swap");
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f6f5f3;
+  --surface: #ffffff;
+  --surface-muted: #f1efec;
+  --surface-strong: #e9e5df;
+  --foreground: #17383c;
+  --foreground-muted: #5c7274;
+  --foreground-faint: #8a9b9c;
+
+  --primary: #f2a9aa;
+  --primary-strong: #e58586;
+  --primary-stronger: #c75b5b;
+  --primary-soft: #fbe0df;
+  --primary-wash: #fdf1f0;
+
+  --secondary: #193c40;
+  --secondary-soft: #e4ecea;
+  --secondary-shadow: #d3dfdc;
+
+  --accent: #5c8d89;
+  --accent-soft: #e3efec;
+
+  --success: #5c8d89;
+  --warning: #e9c46a;
+  --error: #c75b5b;
+
+  --border: #e6e1db;
+  --border-strong: #d5cec5;
+
+  --ring: #f2a9aa;
+  --ring-opacity: 0.5;
+
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 9999px;
+
+  --shadow-sm: 0 1px 2px rgba(23, 56, 60, 0.06), 0 1px 3px rgba(23, 56, 60, 0.08);
+  --shadow-md: 0 4px 12px rgba(23, 56, 60, 0.08), 0 2px 4px rgba(23, 56, 60, 0.06);
+  --shadow-lg: 0 12px 32px rgba(23, 56, 60, 0.12), 0 4px 8px rgba(23, 56, 60, 0.06);
+
+  --font-display: "Baloo 2", "Nunito", "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Nunito", "Baloo 2", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+
+.dark {
+  --background: #0f1b1d;
+  --surface: #17363a;
+  --surface-muted: #1d4044;
+  --surface-strong: #24494d;
+  --foreground: #f0ece7;
+  --foreground-muted: #b7c5c6;
+  --foreground-faint: #7f989a;
+
+  --primary: #e58586;
+  --primary-strong: #f2a9aa;
+  --primary-stronger: #f7c7c8;
+  --primary-soft: #3a2a2b;
+  --primary-wash: #332627;
+
+  --secondary: #e4ecea;
+  --secondary-soft: #1d4044;
+  --secondary-shadow: #24494d;
+
+  --accent: #7faeaa;
+  --accent-soft: #1c3b3e;
+
+  --success: #7faeaa;
+  --warning: #e9c46a;
+  --error: #e58a8a;
+
+  --border: #2b4f52;
+  --border-strong: #3a6366;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.25), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4), 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-strong: var(--surface-strong);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--foreground-muted);
+  --color-faint: var(--foreground-faint);
+
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-stronger: var(--primary-stronger);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-wash: var(--primary-wash);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-soft: var(--secondary-soft);
+  --color-secondary-shadow: var(--secondary-shadow);
+
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
+
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+  --radius-full: var(--radius-full);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+}
+
+html {
+  font-family: var(--font-sans);
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+/* Thin, brand-friendly scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
